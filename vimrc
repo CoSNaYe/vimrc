@@ -37,6 +37,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set noswapfile
+set syntax on
 
 let mapleader = "\<Space>"
 map <Leader>sc :sp db/schema.rb<CR>
