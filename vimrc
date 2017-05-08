@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+" filetype off                  " required
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,6 +19,10 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'sheerun/vim-polyglot'
 " Plugin 'vim-syntastic/syntastic'
 Plugin 'w0rp/ale'
+" Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'mxw/vim-jsx'
+Plugin 'elzr/vim-json'
+Bundle 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -52,4 +57,11 @@ let g:ctrlp_use_caching = 0
 
 let g:jsx_ext_required = 0    " By default, JSX syntax highlighting and indenting will be enabled only for files with the .jsx extension
 
+let g:deoplete#enable_at_startup = 1
 
+" Yank text to the OS X clipboard" 将文本复制到OS X剪贴板中
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
+" Preserve indentation while pasting text from the OS X clipboard 在粘贴OS X剪贴板中的文本时保留缩进
+noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
