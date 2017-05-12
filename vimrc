@@ -24,6 +24,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Bundle 'Valloric/YouCompleteMe'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -44,7 +45,9 @@ set shiftwidth=2
 set expandtab
 set noswapfile
 " set clipboard=unnamedplus
-syntax on
+syntax enable
+set background=dark " solarized setting
+colorscheme solarized " solarized setting
 
 let mapleader = "\<Space>"
 map <Leader>sc :sp db/schema.rb<CR>
