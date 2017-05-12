@@ -23,6 +23,7 @@ Plugin 'w0rp/ale'
 Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 Bundle 'Valloric/YouCompleteMe'
+Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -42,6 +43,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set noswapfile
+" set clipboard=unnamedplus
 syntax on
 
 let mapleader = "\<Space>"
@@ -50,6 +52,8 @@ nmap 0 ^
 nmap k gk
 nmap j gj
 map <C-n> :NERDTreeToggle<CR>
+noremap <C-r> :Autoformat<CR>
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
