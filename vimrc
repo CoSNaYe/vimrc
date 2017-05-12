@@ -65,3 +65,6 @@ noremap <leader>yy "*Y
 
 " Preserve indentation while pasting text from the OS X clipboard 在粘贴OS X剪贴板中的文本时保留缩进
 noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
+
+" fix problem of YouCompleteMe
+let g:ycm_path_to_python_interpreter="/usr/local/bin/python"
