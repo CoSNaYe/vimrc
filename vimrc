@@ -25,18 +25,27 @@ Plugin 'elzr/vim-json'
 Bundle 'Valloric/YouCompleteMe'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'altercation/vim-colors-solarized'
+Bundle 'moll/vim-node'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 
+filetype plugin indent on   " Automatically detect file types
+set splitbelow              " Splits window BELOW current window
+set splitright              " Open new split on the right
+set virtualedit=onemore     " Allow for cursor beyond last character
 set number                      " Display line numbers beside buffer
 set backspace=indent,eol,start  " Sane backspace behavior
 set history=1000                " Remember last 1000 commands
 set scrolloff=4                 " Keep at least 4 lines below cursor
 set hidden			                " in order to switch between buffers with unsaved change
 set cursorline			            " hightlight column and line
+set smartindent             " Do smart autoindenting when starting a new line
 set autoindent
+set pastetoggle=<F12>       " Sane indentation on pastes
 set ic
 " 1 tab to 2 space for ruby
 set tabstop=2
@@ -48,6 +57,18 @@ set noswapfile
 syntax enable
 set background=dark " solarized setting
 colorscheme solarized " solarized setting
+set visualbell              " No beeping
+set showmode                    " Display the current mode
+set ignorecase                          " Case-insensitive searching.
+set smartcase                           " But case-sensitive if expression contains a capital letter.
+set gdefault                            " The /g flag on :s substitutions by default
+set list                                " View tabs, where line ends etc
+set ruler
+
+" Remove trailing whitespaces and ^M chars
+autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+
+nmap <silent> <C-s> <Esc>:call ToggleHLSearch()<cr>  " Toggle highlight search with CTRL+S
 
 let mapleader = "\<Space>"
 map <Leader>sc :sp db/schema.rb<CR>
@@ -58,9 +79,12 @@ map <C-n> :NERDTreeToggle<CR>
 noremap <C-r> :Autoformat<CR>
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
-" Make CtrlP use ag for listing the files. Way faster and no useless files.
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
+" The Silver Searcher
+if executable('ag')
+  " Make CtrlP use ag for listing the files. Way faster and no useless files.
+  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
 
 let g:jsx_ext_required = 0    " By default, JSX syntax highlighting and indenting will be enabled only for files with the .jsx extension
 
@@ -75,3 +99,9 @@ noremap <leader>p :set paste<CR>:put *<CR>:set nopaste<CR>
 
 " fix problem of YouCompleteMe
 let g:ycm_path_to_python_interpreter="/usr/local/bin/python"
+
+" Use local vimrc if available {
+    if filereadable(expand("~/.vimrc.local"))
+        source ~/.vimrc.local
+    endif
+" }
