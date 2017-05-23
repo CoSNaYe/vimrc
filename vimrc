@@ -65,6 +65,10 @@ set gdefault                            " The /g flag on :s substitutions by def
 set list                                " View tabs, where line ends etc
 set ruler
 
+" check one time after 4s of inactivity in normal mode
+set autoread
+au CursorHold * checktime
+
 " Remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
@@ -76,8 +80,9 @@ nmap 0 ^
 nmap k gk
 nmap j gj
 map <C-n> :NERDTreeToggle<CR>
-noremap <C-r> :Autoformat<CR>
+noremap <C-o> :Autoformat<CR>
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap U :echo " < < ===== C H E C K   C A P S   L O C K ===== > > "<CR>
 
 " The Silver Searcher
 if executable('ag')
