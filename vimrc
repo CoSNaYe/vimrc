@@ -28,6 +28,7 @@ Plugin 'altercation/vim-colors-solarized'
 Bundle 'moll/vim-node'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'  " Integrate Git
 
 call vundle#end()            " required
 filetype plugin indent on    " required
